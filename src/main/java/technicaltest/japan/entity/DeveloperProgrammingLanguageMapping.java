@@ -15,7 +15,7 @@ public class DeveloperProgrammingLanguageMapping {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "developer_id")
-    private Developers developer;
+    private Developer developer;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "programming_language_id")
@@ -29,11 +29,11 @@ public class DeveloperProgrammingLanguageMapping {
         this.id = id;
     }
 
-    public Developers getDeveloper() {
+    public Developer getDeveloper() {
         return developer;
     }
 
-    public void setDeveloper(Developers developer) {
+    public void setDeveloper(Developer developer) {
         this.developer = developer;
     }
 

@@ -17,7 +17,7 @@ public class DeveloperLanguageMapping implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "developer_id")
-    private Developers developer;
+    private Developer developer;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "language_id")
@@ -37,11 +37,11 @@ public class DeveloperLanguageMapping implements Serializable {
         return language;
     }
 
-    public Developers getDeveloper() {
+    public Developer getDeveloper() {
         return developer;
     }
 
-    public void setDeveloper(Developers developer) {
+    public void setDeveloper(Developer developer) {
         this.developer = developer;
     }
 

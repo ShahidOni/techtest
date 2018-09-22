@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "developers")
-public class Developers implements Serializable{
+public class Developer implements Serializable{
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -27,6 +27,9 @@ public class Developers implements Serializable{
 
     @OneToMany(mappedBy = "developer", fetch = FetchType.LAZY)
     private List<DeveloperProgrammingLanguageMapping> developerProgrammingLanguageMappings;
+
+    @OneToMany(mappedBy = "developer",fetch = FetchType.LAZY)
+    private List<Interview> listOfInterviews;
 
     public long getId() {
         return id;
@@ -68,12 +71,20 @@ public class Developers implements Serializable{
         this.developerProgrammingLanguageMappings = developerProgrammingLanguageMappings;
     }
 
+    public List<Interview> getListOfInterviews() {
+        return listOfInterviews;
+    }
+
+    public void setListOfInterviews(List<Interview> listOfInterviews) {
+        this.listOfInterviews = listOfInterviews;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Developers that = (Developers) o;
+        Developer that = (Developer) o;
 
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
