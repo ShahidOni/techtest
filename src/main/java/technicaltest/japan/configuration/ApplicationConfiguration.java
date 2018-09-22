@@ -2,10 +2,8 @@ package technicaltest.japan.configuration;
 
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
 
 import javax.sql.DataSource;
 
@@ -16,16 +14,18 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackages = {"technicaltest.japan"})
+@PropertySource("classpath:datasource.properties")
 public class ApplicationConfiguration {
 
     @Bean
     @Primary
-    public DataSource dataSource() {
+    public DataSource dataSource(Environment env) {
+
         return DataSourceBuilder
                 .create()
-                .username("root")
-                .url("jdbc:mysql://localhost:3306/devinfo?useSSL=false")
-                .driverClassName("com.mysql.jdbc.Driver")
+                .username(env.getProperty("datasource.username"))
+                .url(env.getProperty("datasource.url"))
+                .driverClassName(env.getProperty("datasource.driver.class"))
                 .build();
     }
 
